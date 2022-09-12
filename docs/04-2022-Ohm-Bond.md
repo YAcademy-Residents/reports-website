@@ -239,6 +239,7 @@ Findings are broken down into sections by their respective impact:
      - Findings that can improve the gas efficiency of the contracts
  - Informational
      - Findings including recommendations and best practices
+
 ---
 
 ## High Findings
