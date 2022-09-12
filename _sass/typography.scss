@@ -6,26 +6,29 @@ h1,
 .text-alpha {
   @include fs-8;
 
-  font-weight: 300;
+  font-weight: 600;
 }
 
 h2,
 .text-beta,
 #toctitle {
   @include fs-6;
+
+  font-weight: 600;
 }
 
 h3,
 .text-gamma {
   @include fs-5;
+
+  font-weight: 600;
 }
 
 h4,
 .text-delta {
   @include fs-2;
 
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: bold;
   letter-spacing: 0.1em;
 }
 
