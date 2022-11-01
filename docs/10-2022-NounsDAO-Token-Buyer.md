@@ -1,7 +1,7 @@
 ---
- layout: default
- title: 10-2022-NounsDAO-Token-Buyer
- nav_order: 10
+layout: default
+title: 10-2022-NounsDAO-Token-Buyer
+nav_order: 10
 ---
 
 yAcademy NounsDAO Token Buyer review
@@ -30,33 +30,33 @@ yAcademy NounsDAO Token Buyer review
       - [Recommendation](#recommendation)
       - [Developer Response](#developer-response)
   - [Medium Findings](#medium-findings)
-    - [1. Medium - Fee-on-transfer token not supported (blockdev)](#1-medium---fee-on-transfer-token-not-supported-blockdev)
+    - [1. Medium - ETH buyer pays the gas cost of debt payments (blockdev)](#1-medium---eth-buyer-pays-the-gas-cost-of-debt-payments-blockdev)
       - [Technical Details](#technical-details-1)
       - [Impact](#impact-1)
       - [Recommendation](#recommendation-1)
       - [Developer Response](#developer-response-1)
-    - [2. Medium - ETH buyer pays the gas cost of debt payments (blockdev)](#2-medium---eth-buyer-pays-the-gas-cost-of-debt-payments-blockdev)
+  - [Low Findings](#low-findings)
+    - [1. Low - Can require the basis point values to be less than `10_000` (blockdev)](#1-low---can-require-the-basis-point-values-to-be-less-than-10_000-blockdev)
       - [Technical Details](#technical-details-2)
       - [Impact](#impact-2)
       - [Recommendation](#recommendation-2)
       - [Developer Response](#developer-response-2)
-  - [Low Findings](#low-findings)
-    - [1. Low - Can require the basis point values to be less than `10_000` (blockdev)](#1-low---can-require-the-basis-point-values-to-be-less-than-10_000-blockdev)
+    - [2. Low - Use a two-step Ownership transfer pattern (blockdev)](#2-low---use-a-two-step-ownership-transfer-pattern-blockdev)
       - [Technical Details](#technical-details-3)
       - [Impact](#impact-3)
       - [Recommendation](#recommendation-3)
       - [Developer Response](#developer-response-3)
-    - [2. Low - Use a two-step Ownership transfer pattern (blockdev)](#2-low---use-a-two-step-ownership-transfer-pattern-blockdev)
+    - [3. Low - Existing debts should be prioritized in `sendOrRegisterDebt()` (blockdev)](#3-low---existing-debts-should-be-prioritized-in-sendorregisterdebt-blockdev)
       - [Technical Details](#technical-details-4)
       - [Impact](#impact-4)
       - [Recommendation](#recommendation-4)
       - [Developer Response](#developer-response-4)
-    - [3. Low - Existing debts should be prioritized in `sendOrRegisterDebt()` (blockdev)](#3-low---existing-debts-should-be-prioritized-in-sendorregisterdebt-blockdev)
+    - [4. Low - Risk of USDC depeg (blockdev)](#4-low---risk-of-usdc-depeg-blockdev)
       - [Technical Details](#technical-details-5)
       - [Impact](#impact-5)
       - [Recommendation](#recommendation-5)
       - [Developer Response](#developer-response-5)
-    - [4. Low - Risk of USDC depeg](#4-low---risk-of-usdc-depeg)
+    - [5. Low - Fee-on-transfer token not supported (blockdev)](#5-low---fee-on-transfer-token-not-supported-blockdev)
       - [Technical Details](#technical-details-6)
       - [Impact](#impact-6)
       - [Recommendation](#recommendation-6)
@@ -118,7 +118,7 @@ yAcademy NounsDAO Token Buyer review
       - [Impact](#impact-17)
       - [Recommendation](#recommendation-17)
       - [Developer Response](#developer-response-17)
-    - [7. Informational - Consider adding events for creating and paying back the debt if the debt is paid back on creation](#7-informational---consider-adding-events-for-creating-and-paying-back-the-debt-if-the-debt-is-paid-back-on-creation)
+    - [7. Informational - Consider adding events for creating and paying back the debt if the debt is paid back on creation (invader-tak)](#7-informational---consider-adding-events-for-creating-and-paying-back-the-debt-if-the-debt-is-paid-back-on-creation-invader-tak)
       - [Technical Details](#technical-details-18)
       - [Impact](#impact-18)
       - [Recommendation](#recommendation-18)
@@ -132,7 +132,7 @@ yAcademy NounsDAO Token Buyer review
 
 **NounsDAO Token Buyer**
 
-TokenBuyer's purpose is to allow the DAO to pay the proposals with ERC20 tokens. Since trading a large portion of ETH incurs slippage and is susceptible to sandwich attacks, this protocol uses Chainlink oracle to fetch ETH prices and allow anyone to sell their tokens against ETH.
+TokenBuyer's purpose is to allow the NounsDAO to pay the proposals with ERC20 tokens. Since trading a large portion of ETH incurs slippage and is susceptible to sandwich attacks, this protocol uses Chainlink oracle to fetch ETH prices and allow anyone to sell their tokens against ETH.
 
 The contracts of Token Buyer [Repo](https://github.com/nounsDAO/token-buyer/tree/23d64ac7093f504ad4731bc4cf8d41b2c2943657) were reviewed over 7 days, 1 day of which was used to create an initial overview of the contract. The code review was performed between October 11, 2022 and October 18, 2022. The code was reviewed by 2 residents for a total of 32 review hours (NibblerExpress 8 hours, blockdev 24 hours). The review was limited to the latest commit at the start of the review. This was commit `23d64ac7093f504ad4731bc4cf8d41b2c2943657` for the `token-buyer` repo.
 
@@ -156,13 +156,13 @@ Code Evaluation Matrix
 
 | Category                 | Mark    | Description |
 | ------------------------ | ------- | ----------- |
-| Access Control           | Good | Priviled functionality is restricted to the owner and admin. |
+| Access Control           | Good | Privileged functionality is restricted to the owner and admin. |
 | Mathematics              | Good | Decimal adjustment is done to convert between Oracle price and wad decimal. |
 | Complexity               | Good | Responsibilities are separated which reduces complexity. |
 | Libraries                | Good | Queue library from Open Zeppelin is modified to fit the need, others are imported. |
 | Decentralization         | Good | Core protocol functions are permissionless. |
 | Code stability           | Good    | Changes were reviewed at a specific commit hash and the scope was not expanded after the review was started. The code reviewed had all features implemented. |
-| Documentation            | Good | Descriptive NatSpec comments are found in the interface contracts. The comments accurately describe the function. The spec contains helpful information about the intended use and purpose of Bunni. |
+| Documentation            | Good | Descriptive NatSpec comments are found in the interface contracts. The comments accurately describe the function. The spec contains helpful information about the intended use and purpose. |
 | Monitoring               | Average | Events are used. |
 | Testing and verification | Good | Forge tests have high coverage and a deploy script is used.  |
 
@@ -184,7 +184,7 @@ Findings are broken down into sections by their respective impact:
 
 `PriceFeed` is already deployed at [`0x4050Cd1eDDB589fe26B62F8859968cC9a415cE7F`](https://etherscan.io/address/0x4050Cd1eDDB589fe26B62F8859968cC9a415cE7F#readContract) according to the [deploy script](https://github.com/nounsDAO/token-buyer/blob/23d64ac7093f504ad4731bc4cf8d41b2c2943657/script/DeployTokenBuyer.s.sol#L14). `priceLowerBound` is set to $100 * 10^{18}$, and `priceUpperBound` is set to $100,000 * 10^{18}$ which translate to $100 and $100K respectively.
 
-This is the chainlink oracle `PriceFeed` is using: [`0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419`](https://etherscan.io/address/0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419#readContract) which uses this aggregator: [`0x37bC7498f4FF12C19678ee8fE19d713b87F6a9e6`](https://etherscan.io/address/0x37bC7498f4FF12C19678ee8fE19d713b87F6a9e6#readContract). `minAnswer` and `maxAnswer` values from this aggregator are: $1 * {10^8}$ and $10,000 * {10 ^ 8}$ which translate to $1 and $10K. Chainlink will never report prices outside this range.
+This is the Chainlink oracle `PriceFeed` is using: [`0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419`](https://etherscan.io/address/0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419#readContract) which uses this aggregator: [`0x37bC7498f4FF12C19678ee8fE19d713b87F6a9e6`](https://etherscan.io/address/0x37bC7498f4FF12C19678ee8fE19d713b87F6a9e6#readContract). `minAnswer` and `maxAnswer` values from this aggregator are: $1 * {10^8}$ and $10,000 * {10 ^ 8}$ which translate to $1 and $10K. Chainlink will never report prices outside this range.
 
 Hence, the upper bound of $100K set in `PriceFeed` is not useful as the [check](https://github.com/nounsDAO/token-buyer/blob/23d64ac7093f504ad4731bc4cf8d41b2c2943657/src/PriceFeed.sol#L93) `priceWad > priceUpperBound` is always `false`:
 ```solidity
@@ -211,40 +211,16 @@ Suppose you set your upper bound to $9K, and the market price movement is say fr
 
 There are 2 scenarios:
 1. the price directly jumped from $8K to $11K, then the upper bound won't be useful and only the staleness check will protect from trading. In this case, `priceUpperBound` is useless in both cases (in the current code and the recommendation).
-2. the price moves from $8K -> $9.5K -> $11K, in this case, `priceUpperBound` will prevent TokenBuyer from making any trades. However, the current code will let it trade at $9.5K until the staleness check comes in. And this is a more likely scenario as chainlink reports a price quickly when it moves above a certain deviation.
+2. the price moves from $8K -> $9.5K -> $11K, in this case, `priceUpperBound` will prevent `TokenBuyer` from making any trades. However, the current code will let it trade at $9.5K until the staleness check comes in. And this is a more likely scenario as Chainlink reports a price quickly when it moves above a certain deviation.
 
 #### Developer Response
 
-Our current path forward will be to set the cap at $8K, and in the future upgrade the price feed to check the diff between chainlink and univ3 twap and revert in case of a big difference.
+Our current path forward will be to set the cap at $8K, and in the future upgrade the price feed to check the diff between Chainlink and Univ3 TWAP and revert in case of a big difference.
 
 
 ## Medium Findings
 
-### 1. Medium - Fee-on-transfer token not supported (blockdev)
-
-The payment token is assumed to send the full amount to the receiver on a transfer. However, if a token like [USDT](https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7#code) turns on a fee in the future, it can break accounting logic.
-
-#### Technical Details
-
-[TokenBuyer.sol](https://github.com/nounsDAO/token-buyer/blob/23d64ac7093f504ad4731bc4cf8d41b2c2943657/src/TokenBuyer.sol)
-
-#### Impact
-
-Medium. The payment token is defined by the deployer. The deployer can ensure the payment token does not and cannot take a fee on transfer (like USDT). The current code is fine for such an ERC20. However, if a fee-on-transfer ERC20 is used as the payment token, the code should be updated to handle the fee.
-
-#### Recommendation
-
-Consider one of the following two approaches:
-- Either ensure off-chain before deploying that the payment token is not a fee-on-transfer token.
-- Update the contract logic to calculate the tokens transferred by checking the token balance before and after a transfer.
-
-#### Developer Response
-
-Acknowledged, won't fix.
-
-We don't plan to use any tokens with fee-on-transfer in the near future. If we do, we will revise the logic.
-
-### 2. Medium - ETH buyer pays the gas cost of debt payments (blockdev)
+### 1. Medium - ETH buyer pays the gas cost of debt payments (blockdev)
 
 `buyETH()` function calls `payBackDebt()` which iterates over the queue and pays the debt of the first few elements. Iterating over the queue is a gas-intensive operation. If the queue is long relative to the buy amount, it may discourage the buyers as the extra gas costs may overshadow the discount.
 
@@ -254,11 +230,12 @@ We don't plan to use any tokens with fee-on-transfer in the near future. If we d
 
 #### Impact
 
-Medium as the extra gas costs may disincentivize trading through `TokenBuyer`.
+Medium. The extra gas costs may disincentivize trading through `TokenBuyer`.
 
 #### Recommendation
 
 Consider removing the debt payment in `buyETH()` functions. Anyone can call `payBackDebt()` separately for debt payments.
+
 Note: With this change, you can also consider calling `payBackDebt()` at the beginning of `sendOrRegisterDebt()` since the debt in the queue should be paid first.
 
 #### Developer Response
@@ -288,7 +265,7 @@ Low. `price()` will return incorrect values in this case, however since the like
 
 Consider either:
 - Adding `require` checks in `TokenBuyer` constructor to assert that all the basis point values are < `10_000`.
-- Add these `require` checks in forge script.
+- Adding these `require` checks in forge script.
 
 #### Developer Response
 
@@ -314,7 +291,7 @@ Consider implementing a two-step ownership transfer where the proposed new owner
 
 Acknowledged, won't fix.
 
-We intend for the owner of the contracts to be the nouns timelock, so any transferOwnership will go through a proposal process with ample time to check for errors.
+We intend for the owner of the contracts to be the nouns timelock, so any ownership transfer will go through a proposal process with ample time to check for errors.
 In addition, when we transfer the ownership to the DAO the first time, we don't want to go through a proposal process in order to accept the ownership.
 
 
@@ -328,7 +305,7 @@ In addition, when we transfer the ownership to the DAO the first time, we don't 
 
 #### Impact
 
-Low.  Since the existing debt takes priority over the new debt, it should be paid first. It may also be seen as impartiality towards a party.
+Low. Since the existing debt takes priority over the new debt, it should be paid first. It may also be seen as impartiality towards a party.
 
 #### Recommendation
 
@@ -341,7 +318,7 @@ Acknowledged, won't fix.
 We don't plan to send funds to the `Payer` not through the `TokenBuyer`. In case it does happen, we can manually trigger `payBackDebt()`.
 
 
-### 4. Low - Risk of USDC depeg
+### 4. Low - Risk of USDC depeg (blockdev)
 
 `PriceFeed` uses Chainlink oracle of ETH/USD for payment token USDC. This assumes that USDC is always pegged to $1. In the case that the USDC price moves below $1, `TokenBuyer` will make trades at a loss.
 
@@ -351,7 +328,7 @@ We don't plan to send funds to the `Payer` not through the `TokenBuyer`. In case
 
 #### Impact
 
-Low. USDC depegging can be considered an unlikely event, however, in case that happens, all the ETH locked in `TokenBuyer` will be making trades at a loss.
+Low. USDC depegging can be considered an unlikely event. However, in case that happens, all the ETH locked in `TokenBuyer` will be making trades at a loss.
 
 #### Recommendation
 
@@ -362,6 +339,31 @@ Acknowledged, won't fix.
 
 We prefer to use the ETH/USD oracle because of the significantly shorter heartbeat (1 hr vs 24 hrs).
 We are aware of the depeg risk and consider it very low for USDC.
+
+### 5. Low - Fee-on-transfer token not supported (blockdev)
+
+The payment token is assumed to send the full amount to the receiver on a transfer. However, if a token like [USDT](https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7#code) turns on a fee in the future, it can break accounting logic.
+
+#### Technical Details
+
+[TokenBuyer.sol](https://github.com/nounsDAO/token-buyer/blob/23d64ac7093f504ad4731bc4cf8d41b2c2943657/src/TokenBuyer.sol)
+
+#### Impact
+
+Low. The payment token is defined by the deployer. The deployer can ensure the payment token does not and cannot take a fee on transfer (like USDT). The current code is fine for such an ERC20. However, if a fee-on-transfer ERC20 is used as the payment token, the code should be updated to handle the fee.
+
+#### Recommendation
+
+Consider one of the following two approaches:
+- Either ensure off-chain before deploying that the payment token is not a fee-on-transfer token.
+- Update the contract logic to calculate the tokens transferred by checking the token balance before and after a transfer.
+
+#### Developer Response
+
+Acknowledged, won't fix.
+
+We don't plan to use any tokens with fee-on-transfer in the near future. If we do, we will revise the logic.
+
 
 ## Gas Savings Findings
 
@@ -472,7 +474,7 @@ Gas savings.
 
 #### Recommendation
 
-Appy this diff:
+Apply this diff:
 ```diff
 function empty(DebtDeque storage deque) internal view returns (bool) {
 -   return deque._end <= deque._begin;
@@ -661,7 +663,7 @@ Use solidity 0.8.16 or higher.
 Fixed in commit [09c7101](https://github.com/nounsDAO/token-buyer/commit/09c7101ae3b76cf04babb4f629e5a635b7077b70).
 
 
-### 7. Informational - Consider adding events for creating and paying back the debt if the debt is paid back on creation
+### 7. Informational - Consider adding events for creating and paying back the debt if the debt is paid back on creation (invader-tak)
 
 The function `sendOrRegisterDebt()` in the `Payer.sol` contract can under certain circumstances get and pay back a debt during its call - presumably, this is done to save the gas to register the debt and calling the payBackDebt function - This may cause complications for data collection, as no `RegisteredDebt` or `PaidBackDebt` events are emitted, especially when using services such as the Graph or Dune analytics.
 
@@ -690,7 +692,7 @@ Responsibilities are split in different contracts, and the code is well document
 
 ### NibblerExpress
 
-The code allows any user to swap payment tokens for ETH, which has a high risk. Using pausable, nonreentrant, and chainlink oracles mitigate much of the risk. Overall, the code is well organized and commented on.
+The code allows any user to swap payment tokens for ETH, which has a high risk. Using pausable, nonreentrant, and Chainlink oracles mitigate much of the risk. Overall, the code is well organized and commented on.
 
 ## About yAcademy
 
