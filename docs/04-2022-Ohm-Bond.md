@@ -1077,6 +1077,3 @@ The project architecture is well thought out and there is reasonably detailed do
 
 Based on conversations with the Olympus Bond team, the access control modifiers (including onlyGovernor, onlyGuardian, onlyPolicy, and onlyVault) are placeholders and will be changed. These modifiers indicate places where access controls will exist, but the specific controls will likely change from the approach in the commit reviewed. Therefore, any contracts that use these modifiers or import the files OlympusAccessControlled.sol or OlympusAuthority.sol is likely to be changed before a production deployment.
 
-###### tags: `Review` `yAcademy`
-
-
