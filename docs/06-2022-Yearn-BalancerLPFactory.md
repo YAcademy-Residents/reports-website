@@ -28,7 +28,7 @@ Additional documentation was not provided, but a presentation was given regardin
 
 BalancerLpFactory is a CRV / CVX farming strategy deployed on Balancer. 
 
-The master branch of the BalancerLpFactory [Repo](https://github.com/flashfish0x/BalancerLpFactory) was reviewed over 13 days. 2 days was used to create a report of the findings. The contracts were reviewed from June 29 to July 12. The repository was under active development during the review, but the review was limited to [one specific commit](https://github.com/flashfish0x/BalancerLpFactory/commit/a718dc56465bf1f0881389ad1801ac9447aee47d).
+The master branch of the BalancerLpFactory [Repo](https://github.com/flashfish0x/BalancerLpFactory) was reviewed over 13 days. 2 days was used to create a report of the findings. The contracts were reviewed from June 29 to July 12, 2022. The repository was under active development during the review, but the review was limited to [one specific commit](https://github.com/flashfish0x/BalancerLpFactory/commit/a718dc56465bf1f0881389ad1801ac9447aee47d).
 
 ## Scope
 [Code Repo](https://github.com/flashfish0x/BalancerLpFactory)

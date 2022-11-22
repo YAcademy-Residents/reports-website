@@ -30,7 +30,7 @@ Documentation was provided
 
 **Yearn LevGeist**
 
-The levgeist branch of the Yearn-contracts [Repo](https://github.com/Yacademy-block-2/yearnV2-gen-lev-lending/tree/levgeist) was reviewed over 11 days. 2 days were used to create a report of the findings. The contracts were reviewed from 6/13 to 6/24. The repository was under active development during the review, but the review was limited to commit [6c43c39c2e9cfcfb329edf3678843c5b57095dcf](https://github.com/Yacademy-block-2/yearnV2-gen-lev-lending/tree/levgeist).
+The levgeist branch of the Yearn-contracts [Repo](https://github.com/Yacademy-block-2/yearnV2-gen-lev-lending/tree/levgeist) was reviewed over 11 days. 2 days were used to create a report of the findings. The contracts were reviewed from June 13 to June 24, 2022. The repository was under active development during the review, but the review was limited to commit [6c43c39c2e9cfcfb329edf3678843c5b57095dcf](https://github.com/Yacademy-block-2/yearnV2-gen-lev-lending/tree/levgeist).
 
 ## Scope
 [Code Repo](https://github.com/Yacademy-block-2/yearnV2-gen-lev-lending/tree/levgeist)
