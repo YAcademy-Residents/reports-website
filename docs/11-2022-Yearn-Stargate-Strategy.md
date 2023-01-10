@@ -858,7 +858,7 @@ Informational.
 
 Add an explicit check [to ensure `newStrategy` address is non-zero](https://github.com/Yacademy-block-4/yearn-stargate/blob/bcbc1ddbe8973b55a6178f5e07177332938f0cd2/contracts/Strategy.sol#L153). Alternatively, clarify with a comment that the external call to the `newStrategy` also acts a check for ensuring `create` did not fail.
 
-### 19. Missing Zero-Address Check (hasanza)
+### 19. Informational - Missing Zero-Address Check (hasanza)
 
 #### Technical Details
 
@@ -872,7 +872,7 @@ Informational.
 
 Place a zero address check for `_lpStaker` argument inside `initializeThis()`.
 
-### 20. Cache storage variables (hasanza)
+### 20. Informational - Cache storage variables (hasanza)
 
 #### Technical Details
 
@@ -900,7 +900,7 @@ Repeat this change in all functions where there are more than 1 reads of a state
 
 In this way, storage caching can accumulate a lot of gas savings.
 
-### 21. Use calldata for unchanging external function args (hasanza)
+### 21. Informational - Use calldata for unchanging external function args (hasanza)
 
 #### Technical Details
 
@@ -914,7 +914,7 @@ Informational.
 
 For the `clone` function, change the argument `string memory _strategyName` to `string calldata _strategyName`. This works because `string` is an alias for `bytes1[]` i.e., a `string` is a dynamic array of 1-byte elements. Since `clone` may be called many times as new strategies are cloned from an original one, it will accrue gas savings over time.
 
-### 22. Use uint256 for bool values (hasanza)
+### 22. Informational - Use uint256 for bool values (hasanza)
 
 #### Technical Details
 
