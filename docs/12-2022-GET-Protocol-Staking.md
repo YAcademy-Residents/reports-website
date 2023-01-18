@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 12-2022-GET-Protocol
+title: 12-2022-GET-Protocol-Staking
 nav_order: 12
 ---
 
-yAcademy GET Protocol Review
+yAcademy GET Protocol Staking Review
 ===
 {: .no_toc }
 
