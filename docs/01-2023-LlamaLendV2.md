@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 01-2023-LlamaLend-V2
-nav_order: 14
+nav_order: 15
 ---
 
 # yAcademy LlamaLend V2 Review
