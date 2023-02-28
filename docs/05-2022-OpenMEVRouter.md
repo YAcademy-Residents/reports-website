@@ -1,7 +1,9 @@
 ---
 layout: default
 title: 05-2022-OpenMEV
+description: OpenMEV yAcademy Report
 nav_order: 5
+image: assets/images/logo.png
 ---
 
 yAcademy OpenMEV review

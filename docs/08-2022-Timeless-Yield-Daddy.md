@@ -1,7 +1,9 @@
 ---
 layout: default
 title: 08-2022-Timeless-Yield-Daddy
+description: Timeless Yield Daddy yAcademy Report
 nav_order: 10
+image: assets/images/logo.png
 ---
 
 yAcademy Timeless Yield Daddy review

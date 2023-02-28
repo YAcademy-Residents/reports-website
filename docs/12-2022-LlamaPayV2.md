@@ -1,7 +1,9 @@
 ---
 layout: default
 title: 12-2022-LlamaPay-V2
+description: LlamaPay V2 yAcademy Report
 nav_order: 13
+image: assets/images/logo.png
 ---
 
 yAcademy Llamapay V2 Review

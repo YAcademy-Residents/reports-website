@@ -1,7 +1,9 @@
 ---
 layout: default
 title: 04-2022-Ohm-Bond
+description: Olympus Bond yAcademy Report
 nav_order: 3
+image: assets/images/logo.png
 ---
 
 yAcademy Olympus Bond review

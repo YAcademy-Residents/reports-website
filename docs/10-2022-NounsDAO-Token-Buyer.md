@@ -1,7 +1,9 @@
 ---
 layout: default
 title: 10-2022-NounsDAO-Token-Buyer
+description: NounsDAO Token Buyer yAcademy Report
 nav_order: 10
+image: assets/images/logo.png
 ---
 
 yAcademy NounsDAO Token Buyer review

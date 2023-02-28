@@ -2,8 +2,9 @@
 layout: default
 title: yAcademy Reports
 nav_order: 1
-description: "yAcademy Reports"
+description: yAcademy Reports Homepage
 permalink: /
+image: assets/images/logo.png
 ---
 
 # yAcademy Reports

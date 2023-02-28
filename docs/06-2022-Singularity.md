@@ -1,7 +1,9 @@
 ---
 layout: default
 title: 05-2022-Singularity
+description: Singularity yAcademy Report
 nav_order: 6
+image: assets/images/logo.png
 ---
 
 yAcademy Singularity v2 review

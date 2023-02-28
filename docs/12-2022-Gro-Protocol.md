@@ -1,7 +1,9 @@
 ---
 layout: default
 title: 12-2022-Gro-Protocol
+description: Gro Protocol yAcademy Report
 nav_order: 14
+image: assets/images/logo.png
 ---
 
 yAcademy Gro Protocol Review

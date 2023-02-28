@@ -1,7 +1,9 @@
 ---
 layout: default
 title: 11-2022-Yearn-Stargate-Strategy
+description: Yearn Stargate Strategy yAcademy Report
 nav_order: 11
+image: assets/images/logo.png
 ---
 
 yAcademy Yearn Stargate Strategy review
