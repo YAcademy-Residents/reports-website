@@ -11,7 +11,7 @@ yAcademy Superfluid review
 {: .no_toc }
 
 **Review Resources:**
-[Docs](https://docs.superfluid.finance/superfluid/)
+- [Docs](https://docs.superfluid.finance/superfluid/)
 
 **Residents:**
  - NibblerExpress

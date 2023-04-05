@@ -11,7 +11,7 @@ yAcademy Singularity v2 review
 {: .no_toc }
 
 **Review Resources:**
-[Docs](https://docs.revenantlabs.io/singularity/)
+- [Docs](https://docs.revenantlabs.io/singularity/)
 
 
 **Residents:**
