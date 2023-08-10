@@ -2,7 +2,7 @@
 layout: default
 title: 06-2022-Singularity
 description: Singularity yAcademy Report
-nav_order: 1
+nav_order: 2
 image: assets/images/logo.png
 ---
 
