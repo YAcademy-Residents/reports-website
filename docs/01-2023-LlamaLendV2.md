@@ -7,6 +7,7 @@ image: assets/images/logo.png
 ---
 
 # yAcademy LlamaLend V2 Review
+{: .no_toc }
 
 **Residents:**
 
