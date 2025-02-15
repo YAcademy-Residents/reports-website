@@ -131,6 +131,13 @@ callouts:
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-redirect-from
+
+# Add this new section
+url: https://reports.electisec.tech
+redirect_from:
+  - /*
+redirect_to: https://reports.electisec.tech
 
 kramdown:
   syntax_highlighter_opts:
