@@ -1,20 +1,24 @@
 {
-  "name": "just-the-docs",
-  "version": "0.3.3",
-  "description": "A modern Jekyll theme for documentation",
-  "repository": "just-the-docs/just-the-docs",
-  "license": "MIT",
-  "bugs": "https://github.com/just-the-docs/just-the-docs/issues",
-  "devDependencies": {
-    "prettier": "^2.7.1",
-    "stylelint": "^14.11.0",
-    "stylelint-config-prettier-scss": "0.0.1",
-    "stylelint-config-standard-scss": "^5.0.0",
-    "stylelint-prettier": "^2.0.0"
-  },
+  "name": "redirect-site",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "stylelint '**/*.scss'",
-    "format": "prettier --write '**/*.{scss,js,json}'",
-    "stylelint-check": "stylelint-config-prettier-check"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4"
   }
 }
