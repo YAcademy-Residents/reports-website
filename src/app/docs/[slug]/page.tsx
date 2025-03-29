@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Image from 'next/image';
 
 export default function RedirectPage() {
   const pathname = usePathname();
@@ -42,7 +41,7 @@ export default function RedirectPage() {
         fontSize: '2.5rem'
       }}>yAcademy</h1>
       <p style={{ fontSize: '1.5rem', margin: '10px 0', color: "grey" }}>is now</p>
-      <Image src="/electisec-logo.png" alt="Electisec Logo" width={250} height={250} />
+      <img src="/electisec-logo.png" alt="Electisec Logo" width={250} height={250} />
       <p  style={{
         color: "grey",
         marginTop: "5rem"
