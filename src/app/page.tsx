@@ -10,7 +10,7 @@ export default function Home() {
     if (typeof window !== "undefined") {
       const slug = pathname;
       if (!slug) return;
-      window.location.href = `https://yaudit.dev${slug}`;
+      window.location.href = `https://reports.yaudit.dev${slug}`;
     }
   }, [pathname]);
 
