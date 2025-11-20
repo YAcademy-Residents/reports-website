@@ -13,7 +13,7 @@ export default function Home() {
         setCountdown((prev) => {
           if (prev === 1) {
             clearInterval(interval);
-            const newUrl = `https://reports.electisec.com${pathname}`;
+            const newUrl = `https://reports.yaudit.dev${pathname}`;
             window.location.href = newUrl;
           }
           return prev - 1;
